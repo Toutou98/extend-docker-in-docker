@@ -39,7 +39,7 @@ pipeline {
             steps {
                 container('docker') {    
                     script {
-                        dockerActions.buildDockerImage('Dockerfile.kubehelm', env.DOCKER_IMAGE_BASE, env.DOCKER_REGISTRY_DOMAIN)
+                        dockerActions.buildDockerImage('Dockerfile.kubehelm', env.DOCKER_IMAGE_BASE_KUBEHELM, env.DOCKER_REGISTRY_DOMAIN)
                     }
                 }
             }
