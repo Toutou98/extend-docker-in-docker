@@ -20,7 +20,8 @@ pipeline {
         }
     }
     environment {
-        DOCKER_IMAGE_BASE = "jdk-base-image:1.0.0"
+        DOCKER_IMAGE_BASE_JDK = "jdk-base-image:1.0.0"
+        DOCKER_IMAGE_BASE_KUBEHELM = "kubehelm:1.0.0"
         DOCKER_REGISTRY = "http://nexus-docker.nexus.svc.cluster.local:8083"
         DOCKER_REGISTRY_DOMAIN = "nexus-docker.nexus.svc.cluster.local:8083"
     }
@@ -28,7 +29,7 @@ pipeline {
         stage('Build Docker Image For Quarkus App') {
             steps {
                 script {
-                    dockerActions.buildDockerImage('Dockerfile.base', env.DOCKER_IMAGE_BASE, env.DOCKER_REGISTRY_DOMAIN)
+                    dockerActions.buildDockerImage('Dockerfile.base', env.DOCKER_IMAGE_BASE_JDK, env.DOCKER_REGISTRY_DOMAIN)
                 }
             }
         }
