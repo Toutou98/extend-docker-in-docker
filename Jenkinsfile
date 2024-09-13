@@ -32,23 +32,6 @@ pipeline {
                 }
             }
         }
-        // stage('Build Base Docker Image') {
-        //     steps {
-        //         container('docker') {
-        //             script {
-        //                 // Build the base Docker image from the Dockerfile in the repo
-        //                 sh "docker build -f Dockerfile.base -t ${DOCKER_IMAGE_BASE} ."
-                        
-        //                 // Authenticate with Nexus Docker registry
-        //                 withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-        //                     sh "echo $NEXUS_PASSWORD | docker login ${DOCKER_REGISTRY} -u $NEXUS_USERNAME --password-stdin"
-        //                     sh "docker tag ${DOCKER_IMAGE_BASE} ${DOCKER_REGISTRY_DOMAIN}/${DOCKER_IMAGE_BASE}"
-        //                     sh "docker push ${DOCKER_REGISTRY_DOMAIN}/${DOCKER_IMAGE_BASE}"
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
     }
     post {
         always {
