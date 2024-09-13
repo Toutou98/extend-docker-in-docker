@@ -28,15 +28,19 @@ pipeline {
     stages {
         stage('Build Docker Image For Quarkus App') {
             steps {
-                script {
-                    dockerActions.buildDockerImage('Dockerfile.base', env.DOCKER_IMAGE_BASE_JDK, env.DOCKER_REGISTRY_DOMAIN)
-                }
+                container('docker') {
+                    script {
+                        dockerActions.buildDockerImage('Dockerfile.base', env.DOCKER_IMAGE_BASE_JDK, env.DOCKER_REGISTRY_DOMAIN)
+                    }
+                }    
             }
         }
         stage('Build KubeHelm Docker Image') {
             steps {
-                script {
-                    dockerActions.buildDockerImage('Dockerfile.kubehelm', env.DOCKER_IMAGE_BASE, env.DOCKER_REGISTRY_DOMAIN)
+                container('docker') {    
+                    script {
+                        dockerActions.buildDockerImage('Dockerfile.kubehelm', env.DOCKER_IMAGE_BASE, env.DOCKER_REGISTRY_DOMAIN)
+                    }
                 }
             }
         }
